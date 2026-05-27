@@ -7,7 +7,8 @@
 // then once stirred a button will pop up to have the witch drink it.
 // based on the type of potion (determined by which 3 ingredients), the witch will have a 
 // unique reaction
-
+// use sprites for texture/color rather than just potionLiquidImage.sprite (do .sprite instead)
+// and declare each field like LovePotionSprite then link the sprite in unity to each field
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +17,22 @@ public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
     private const int MAX_INGREDIENTS = 3;
-    private Color defaultCauldronColor = new Color(1f, 0.41f, 0.71f);
+
+    public Sprite lovePotionSprite;
+    public Sprite shrinkingSprite;
+    public Sprite sleepingSprite;
+    public Sprite explosionSprite;
+    public Sprite animalSprite;
+    public Sprite stoneSprite;
+    public Sprite levitationSprite;
+    public Sprite strengthSprite;
+    public Sprite purpleSprite;
+    public Sprite goblinSprite;
+    private Color defaultPotionColor = new Color(1f, 0.41f, 0.71f);
     public Button drinkButton;
     public Button stirButton;
     public Button resetButton;
-    public Image cauldronImage;
+    public Image potionLiquidImage;
     public Text feedbackText;
     
 
@@ -31,7 +43,7 @@ public class Reactions : MonoBehaviour
         drinkButton.gameObject.SetActive(false);
         resetButton.gameObject.SetActive(true);
         feedbackText.gameObject.SetActive(true);
-        cauldronImage.color  = defaultCauldronColor;
+        potionLiquidImage.sprite  = defaultPotionColor;
         feedbackText.text = "Add 3 ingredients!";
     }
 
@@ -53,9 +65,9 @@ public class Reactions : MonoBehaviour
         ingredients.Add(ingredient);
         if (ingredients.Count == MAX_INGREDIENTS)
         {
-            stirButton.gameObject.SetActive(true);
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Click stir";
+            stirButton.gameObject.SetActive(true);
             return;
 
         }
@@ -65,43 +77,43 @@ public class Reactions : MonoBehaviour
     {
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // love potion
-            cauldronImage.color = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = lovePotionSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
             // shrinking/growing
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = shrinkingSprite;
         }
         else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
             // sleeping
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = sleepingSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
             // Explosion
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = explosionSprite;
         }
         else if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into animal
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = animalSprite;
         }
         else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into stone and topple over
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = stoneSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
             // levitation
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = levitationSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
             // strength
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = strengthSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
             // turn purple
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = purpleSprite;
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into goblin
-            cauldronImage.color  = new Color(1f, 0.41f, 0.71f);
+            potionLiquidImage.sprite = goblinSprite;
         }
         stirButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(true);
@@ -159,6 +171,6 @@ public class Reactions : MonoBehaviour
             drinkButton.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Add 3 ingredients!";
-            cauldronImage.color  = defaultCauldronColor;
+            potionLiquidImage.sprite  = defaultPotionColor;
     }
 }
