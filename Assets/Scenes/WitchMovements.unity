@@ -556,6 +556,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333416695}
   m_CullTransparentMesh: 1
+--- !u!1001 &374379051
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118212803754, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851044118213025930, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+      propertyPath: m_Name
+      value: Cauldron
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
 --- !u!1 &430418657
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +895,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557448188}
   m_CullTransparentMesh: 1
+--- !u!23 &652643380 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4720034862213717697, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+  m_PrefabInstance: {fileID: 374379051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746564832 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cd379b68c0fd94d1584d89d77c8ae75c, type: 3}
@@ -855,11 +929,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e827bbcebee9747139923bf58a360b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Reactions
+  lovePotionMaterial: {fileID: 0}
+  shrinkingMaterial: {fileID: 0}
+  sleepingMaterial: {fileID: 0}
+  explosionMaterial: {fileID: 0}
+  animalMaterial: {fileID: 0}
+  stoneMaterial: {fileID: 0}
+  levitationMaterial: {fileID: 0}
+  strengthMaterial: {fileID: 0}
+  purpleMaterial: {fileID: 0}
+  goblinMaterial: {fileID: 0}
+  defaultPotionMaterial: {fileID: 0}
+  potionLiquidRenderer: {fileID: 652643380}
   drinkButton: {fileID: 119953156}
   stirButton: {fileID: 1532203826}
   resetButton: {fileID: 1643994493}
   cauldronImage: {fileID: 324068475}
   feedbackText: {fileID: 858464472}
+  cauldron: {fileID: 1037000372}
 --- !u!1 &826764589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1221,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858464470}
   m_CullTransparentMesh: 1
+--- !u!1 &1037000372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6851044118213025930, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+  m_PrefabInstance: {fileID: 374379051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1037000373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 561788234194649527, guid: 58de64c14019b404da65a6802d5d2b1e, type: 3}
+  m_PrefabInstance: {fileID: 374379051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037000372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca29ab0dd12a4cf9b22aa1c67cfbbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CauldronController
 --- !u!1 &1376076841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1593,18 @@ MonoBehaviour:
       - m_Target: {fileID: 746564838}
         m_TargetAssemblyTypeName: Reactions, Assembly-CSharp
         m_MethodName: OnStirClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1037000373}
+        m_TargetAssemblyTypeName: CauldronController, Assembly-CSharp
+        m_MethodName: StartBoiling
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2481,3 +2596,4 @@ SceneRoots:
   - {fileID: 1821543351}
   - {fileID: 2136866125}
   - {fileID: 1956973511}
+  - {fileID: 374379051}
