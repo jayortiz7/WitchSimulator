@@ -81,6 +81,7 @@ public class CauldronController : MonoBehaviour
     // ─── State ───────────────────────────────────────────────────────────────
 
     float   _currentHeat;       // 0 = cold, 1 = boiling
+    Color _baseColor;        // initial liquid color (from material)
     Color   _currentColor;      // current liquid tint
     Color   _targetColor;       // target after ingredient added
     bool    _pouring;
@@ -95,6 +96,7 @@ public class CauldronController : MonoBehaviour
     {
         if (liquidMaterial != null)
             _currentColor = _targetColor = liquidMaterial.GetColor(MixColorID);
+            _baseColor = _currentColor;
         _lastPosition = transform.position;
     }
 
@@ -138,7 +140,7 @@ public class CauldronController : MonoBehaviour
     public void ResetCauldron()
     {
         SetHeat(0f);
-        _currentColor  = liquidMaterial.GetColor(Shader.PropertyToID("_MixColor"));
+        _targetColor = _baseColor;
         if (liquidMaterial != null)
         {
             liquidMaterial.SetFloat(SwirlSpeedID, baseSwirlSpeed);
