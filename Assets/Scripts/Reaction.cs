@@ -12,6 +12,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Reactions : MonoBehaviour
 {
@@ -37,7 +38,10 @@ public class Reactions : MonoBehaviour
     public Button drinkButton;
     public Button stirButton;
     public Button resetButton;
-    public Text feedbackText;
+    public Image cauldronImage;
+    public TMP_Text feedbackText;
+    private Animator animator;
+
 
 
     void Start()
@@ -49,9 +53,12 @@ public class Reactions : MonoBehaviour
         if (defaultPotionMaterial != null)
             potionLiquidRenderer.material = defaultPotionMaterial;
         feedbackText.text = "Add 3 ingredients!";
+        animator = GetComponent<Animator>();
     }
 
     public void OnIngredientClicked(string ingredient) {
+
+        animator.SetTrigger("AddIngredient");
 
         if (ingredients.Count >= MAX_INGREDIENTS) {
             feedbackText.gameObject.SetActive(true);
@@ -103,6 +110,7 @@ public class Reactions : MonoBehaviour
 
     public void OnStirClicked()
     {
+        animator.SetTrigger("Stir");
         Material mat = GetPotionMaterial();
         if (mat != null) {
             potionLiquidRenderer.material = mat;
@@ -113,6 +121,7 @@ public class Reactions : MonoBehaviour
 
     public void OnDrinkClicked()
     {
+        animator.SetTrigger("Drink");
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // love potion reaction
         }
