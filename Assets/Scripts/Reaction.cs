@@ -42,6 +42,9 @@ public class Reactions : MonoBehaviour
     public TMP_Text feedbackText;
     private Animator animator;
 
+    // Inspector references to cauldron
+    public GameObject cauldron;
+
 
 
     void Start()
@@ -54,6 +57,7 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         feedbackText.text = "Add 3 ingredients!";
         animator = GetComponent<Animator>();
+        cauldron = GameObject.Find("Cauldron");
     }
 
     public void OnIngredientClicked(string ingredient) {
