@@ -185,6 +185,9 @@ public class CauldronController : MonoBehaviour
     public void StartBoiling() => SetHeat(1f);
     public void StopBoiling()  => SetHeat(0f);
 
+    // Starting swirling the cauldron liquid (OnClickStir in Reaction.cs)
+    public void StartMixing() => StartCoroutine(SwirlCoroutine());
+
     /// <summary>
     /// Begin pouring liquid into the cauldron from a world-space position.
     /// Activates the VFX Graph pour stream.
@@ -262,6 +265,27 @@ public class CauldronController : MonoBehaviour
 
         // Restore normal speed
         liquidMaterial?.SetFloat(SwirlSpeedID, baseSpeed);
+    }
+
+    IEnumerator SwirlCoroutine()
+    {
+        float elapsed = 0f;
+        float swirlDuration = 4f;
+        float swirlMagnitude = 0.5f;
+        while (elapsed < swirlDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / swirlDuration;
+
+            SetHeat(Mathf.Lerp(_currentHeat, 1f, t)); // Gradually increase heat to boiling
+            liquidMaterial?.SetFloat(SwirlSpeedID, baseSwirlSpeed + _currentHeat 
+                * maxSwirlBoost + swirlMagnitude * Mathf.Sin(t * Mathf.PI * 4));
+            yield return null;
+        }
+
+        // Restore normal speed
+        liquidMaterial?.SetFloat(SwirlSpeedID, baseSwirlSpeed + _currentHeat * maxSwirlBoost);
+        SetHeat(0f); // Cool down after stirring
     }
 
     // ─── Editor Helpers ───────────────────────────────────────────────────────
