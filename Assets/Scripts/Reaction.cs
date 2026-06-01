@@ -9,6 +9,7 @@
 // unique reaction
 // use Materials for the 3D liquid mesh in the cauldron — drag each Material into the
 // corresponding field in the Inspector
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,8 @@ public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
     private const int MAX_INGREDIENTS = 3;
+    private SkinnedMeshRenderer[] witchRenderers;
+    private Color[] originalColors;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -44,6 +47,7 @@ public class Reactions : MonoBehaviour
 
     // Inspector references to cauldron
     public GameObject cauldron;
+    public ParticleSystem sleepParticles;
 
 
 
@@ -58,6 +62,23 @@ public class Reactions : MonoBehaviour
         feedbackText.text = "Add 3 ingredients!";
         animator = GetComponent<Animator>();
         cauldron = GameObject.Find("Cauldron");
+        // for color changing witch, get all her components
+        witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        originalColors = new Color[witchRenderers.Length];
+        for (int i = 0; i < witchRenderers.Length; i++)
+        {
+            witchRenderers[i].material = new Material(witchRenderers[i].sharedMaterial);
+            originalColors[i] = witchRenderers[i].material.color;
+        }
+    }
+
+    // for testing
+    void Update()
+    {
+    if (Input.GetKeyDown(KeyCode.P))
+       StartCoroutine(TurnPurple());
+    if (Input.GetKeyDown(KeyCode.S))
+        sleepParticles.Play();
     }
 
     public void OnIngredientClicked(string ingredient) {
@@ -134,6 +155,7 @@ public class Reactions : MonoBehaviour
         }
         else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
             // sleeping reaction
+            sleepParticles.Play();
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
             // explosion reaction
@@ -143,6 +165,7 @@ public class Reactions : MonoBehaviour
         }
         else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into stone reaction
+            StartCoroutine(TurnToStone());
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
             // levitation reaction
@@ -152,6 +175,8 @@ public class Reactions : MonoBehaviour
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
             // turn purple reaction
+            // coroutine moves a little each frame for couple seconds
+            StartCoroutine(TurnPurple());
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into goblin reaction
@@ -166,8 +191,62 @@ public class Reactions : MonoBehaviour
         drinkButton.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(true);
         feedbackText.text = "Add 3 ingredients!";
+        animator.speed = 1f;
+        StartCoroutine(ResetColor());
         if (defaultPotionMaterial != null) {
             potionLiquidRenderer.material = defaultPotionMaterial;
         }
     }
+
+    private IEnumerator TurnPurple()
+    {
+        Color purple = new Color(0.5f, 0f, 1f);
+        float duration = 0.8f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            for (int i = 0; i < witchRenderers.Length; i++)
+                witchRenderers[i].material.color = Color.Lerp(originalColors[i], purple, t);
+            yield return null;
+        }
+    }
+
+    private IEnumerator TurnToStone()
+    {
+        Color stone = new Color(0.3f, 0.27f, 0.25f);
+        float duration = 1.5f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            for (int i = 0; i < witchRenderers.Length; i++)
+                witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t);
+            animator.speed = Mathf.Lerp(1f, 0f, t); // slow to a stop
+            yield return null;
+        }
+    }
+
+    private IEnumerator ResetColor()
+    {
+        float duration = 1f;
+        float elapsed = 0f;
+        Color[] currentColors = new Color[witchRenderers.Length];
+        for (int i = 0; i < witchRenderers.Length; i++)
+            currentColors[i] = witchRenderers[i].material.color;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            for (int i = 0; i < witchRenderers.Length; i++)
+                witchRenderers[i].material.color = Color.Lerp(currentColors[i], originalColors[i], t);
+            yield return null;
+        }
+    }
+
 }
