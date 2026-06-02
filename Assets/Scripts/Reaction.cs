@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
@@ -44,6 +43,8 @@ public class Reactions : MonoBehaviour
 
     // Inspector references to cauldron
     public GameObject cauldron;
+    public GameObject goblinCharacter;
+    public GameObject witchCharacter;
 
 
 
@@ -126,6 +127,7 @@ public class Reactions : MonoBehaviour
     public void OnDrinkClicked()
     {
         animator.SetTrigger("Drink");
+        Debug.Log("ingredients: " + string.Join(", ", ingredients));
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // love potion reaction
         }
@@ -146,6 +148,7 @@ public class Reactions : MonoBehaviour
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
             // levitation reaction
+            animator.SetTrigger("Levitate");
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
             // strength reaction
@@ -155,6 +158,8 @@ public class Reactions : MonoBehaviour
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // turn into goblin reaction
+            animator.SetTrigger("Spin");
+            Invoke("SwapToGoblin", 9.0f);
         }
         drinkButton.gameObject.SetActive(false);
     }
@@ -169,5 +174,14 @@ public class Reactions : MonoBehaviour
         if (defaultPotionMaterial != null) {
             potionLiquidRenderer.material = defaultPotionMaterial;
         }
+        goblinCharacter.SetActive(false);
+        animator = GetComponent<Animator>();
+        witchCharacter.SetActive(true);
+    }
+    void SwapToGoblin() {
+        witchCharacter.SetActive(false);
+        goblinCharacter.SetActive(true);
+        animator = goblinCharacter.GetComponent<Animator>();
+        animator.Play("Spin", 0, 0.01f);
     }
 }
