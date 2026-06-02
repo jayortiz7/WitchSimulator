@@ -947,6 +947,85 @@ MonoBehaviour:
   cauldronImage: {fileID: 324068475}
   feedbackText: {fileID: 858464472}
   cauldron: {fileID: 1037000372}
+  goblinCharacter: {fileID: 1451438780}
+  witchCharacter: {fileID: 746564832}
+--- !u!1001 &806367140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_Name
+      value: goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d5319f84b697047ff94554db3be57bbf, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
 --- !u!1 &826764589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dragon's Blood
+  m_text: "Dragon\u2019s Blood"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1507,6 +1586,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401256803}
   m_CullTransparentMesh: 1
+--- !u!1 &1451438780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c26636660e2d4589a7ce9a21b7a4e96, type: 3}
+  m_PrefabInstance: {fileID: 806367140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1532203824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,9 +1674,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 746564838}
-        m_TargetAssemblyTypeName: Reactions, Assembly-CSharp
-        m_MethodName: OnStirClicked
+      - m_Target: {fileID: 1037000373}
+        m_TargetAssemblyTypeName: CauldronController, Assembly-CSharp
+        m_MethodName: StartBoiling
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1602,9 +1686,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1037000373}
-        m_TargetAssemblyTypeName: CauldronController, Assembly-CSharp
-        m_MethodName: StartBoiling
+      - m_Target: {fileID: 746564838}
+        m_TargetAssemblyTypeName: Reactions, Assembly-CSharp
+        m_MethodName: OnStirClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2597,3 +2681,4 @@ SceneRoots:
   - {fileID: 2136866125}
   - {fileID: 1956973511}
   - {fileID: 374379051}
+  - {fileID: 806367140}
