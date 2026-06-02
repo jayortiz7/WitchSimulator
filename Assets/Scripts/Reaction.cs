@@ -48,6 +48,7 @@ public class Reactions : MonoBehaviour
     // Inspector references to cauldron
     public GameObject cauldron;
     public ParticleSystem sleepParticles;
+    public ParticleSystem loveParticles;
 
 
 
@@ -76,9 +77,11 @@ public class Reactions : MonoBehaviour
     void Update()
     {
     if (Input.GetKeyDown(KeyCode.P))
-       StartCoroutine(TurnPurple());
+        StartCoroutine(TurnPurple());
     if (Input.GetKeyDown(KeyCode.S))
         sleepParticles.Play();
+    if (Input.GetKeyDown(KeyCode.L))
+        loveParticles.Play();
     }
 
     public void OnIngredientClicked(string ingredient) {
@@ -149,6 +152,7 @@ public class Reactions : MonoBehaviour
         animator.SetTrigger("Drink");
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
             // love potion reaction
+            loveParticles.Play();
         }
         else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
             // shrinking/growing reaction
@@ -193,6 +197,8 @@ public class Reactions : MonoBehaviour
         feedbackText.text = "Add 3 ingredients!";
         animator.speed = 1f;
         StartCoroutine(ResetColor());
+        loveParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        sleepParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         if (defaultPotionMaterial != null) {
             potionLiquidRenderer.material = defaultPotionMaterial;
         }
