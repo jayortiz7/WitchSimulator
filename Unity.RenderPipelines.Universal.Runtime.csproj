@@ -18,14 +18,14 @@
     <LangVersion>9.0</LangVersion>
     <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Unity.RenderPipelines.Universal.Runtime</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>0169;USG0001</NoWarn>
-    <DefineConstants>UNITY_6000_4_1;UNITY_6000_4;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;UNITY_6000_3_OR_NEWER;UNITY_6000_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_AUDIO_SCRIPTABLE_PIPELINE;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_ACCESSIBILITY_SCREEN_READER;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLOUD_SERVICES_ENGINE_DIAGNOSTICS;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_HAS_CUSTOM_MUTEX;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_REQUIRES_PATH_NORMALIZATION;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;ENABLE_PROFILER_ASSISTANT_INTEGRATION;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;TEXTCORE_FONT_ENGINE_1_6_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <DefineConstants>UNITY_6000_4_1;UNITY_6000_4;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;UNITY_6000_3_OR_NEWER;UNITY_6000_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_AUDIO_SCRIPTABLE_PIPELINE;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_ACCESSIBILITY_SCREEN_READER;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLOUD_SERVICES_ENGINE_DIAGNOSTICS;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_HAS_CUSTOM_MUTEX;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_REQUIRES_PATH_NORMALIZATION;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;ENABLE_PROFILER_ASSISTANT_INTEGRATION;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;TEXTCORE_FONT_ENGINE_1_6_OR_NEWER;ENABLE_ADAPTIVE_PERFORMANCE;ENABLE_BURST_1_0_0_OR_NEWER;ENABLE_VR_MODULE;ENABLE_XR_MODULE;USING_ANIMATION_MODULE;USING_PHYSICS2D_MODULE;ENABLE_INPUT_SYSTEM_PACKAGE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoStandardLibraries>true</NoStandardLibraries>
@@ -49,84 +49,217 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
-    <Compile Include="Assets/Scripts/WitchController.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
-    <Compile Include="Assets/Scripts/Reaction.cs" />
-    <Compile Include="Assets/Scripts/CauldronController.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
-    <Compile Include="Assets/BK_AlchemistHouse/Scripts/FreeCamera.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
-    <Compile Include="Assets/BK_AlchemistHouse/Scripts/VolumetricLightRenderer.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets/BK_AlchemistHouse/Scripts/VolumetricLight.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
-    <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ColorAdjustments.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/ScreenSpaceAmbientOcclusionPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalEntityManager.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ScreenSpaceLensFlare.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/History/RawColorHistory.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/TemporalAntiAliasingPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RTHandleUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/ScreenSpace/DecalScreenSpaceRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VolumeRequiresRendererFeatures.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalCameraHistory.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ForwardLights.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalCameraData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/GBufferPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/LightMinMaxZJob.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ShadowUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/FinalBlitPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/MotionBlurPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalAdditionalCameraData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ShadowsMidtonesHighlights.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/DecalRendererFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/SpaceFillingCurves.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/TilingJob.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugDisplaySettingsMaterial.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/StencilCrossFadeRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Settings/URPDefaultVolumeProfileSetting.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineRuntimeTerrainShaders.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/OnTilePostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Data/UniversalRenderPipelineAsset.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/History/StpHistory.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/PaniniProjection.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRenderPipelineGlobalSettings.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DBuffer/DBufferDepthCopyPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalResourceData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/PaniniProjectionPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/StencilUsage.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ComponentUtility.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/PostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/HDRDebugViewPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/UpscalerPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/NormalReconstruction.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/DepthOfField.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DeferredPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugRenderSetup.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/PostProcessUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderTargetBufferSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DecalProjector.deprecated.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/ProbeVolumeDebugPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Memory/PinnedArray.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Settings/RenderGraphSettings.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/MotionVectors.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/FinalPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Data/UniversalRenderPipelineAssetPrefiltering.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/SplitToning.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/ScreenSpaceAmbientOcclusion.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/History/TaaHistory.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalPostProcessingData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/Bloom.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalShadowData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugDisplaySettingsRendering.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/SupportedOnRenderer.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRenderer.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineDebugShaders.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalUpdateCullingGroupSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/SmaaPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/History/RawDepthHistory.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/FullScreenPassRendererFeature.migration.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/Fsr1UpscalePostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRenderPipelineRenderGraph.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/Renderer2DResources.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/WhiteBalance.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/DepthOfFieldBokehProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Settings/URPShaderStrippingSetting.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DecalProjector.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/ScriptableRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineEditorShaders.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Memory/BuddyAllocator.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/LiftGammaGain.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/AdditionalLightsShadowAtlasLayout.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Deprecated.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/ColorGradingLutPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/TileRangeExpansionJob.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/TemporalAA.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/UberPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VFXGraph/Utility/PropertyBinders/URPCameraBinder.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineEditorMaterials.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalUpdateCachedSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/Vignette.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/OnTilePostProcessFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/Universal2DResourceData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ShaderUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Documentation.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/InvokeOnRenderObjectCallbackPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/StpUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderingUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/ScalingSetupPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/SampleCount.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/UniversalRenderPipelineDebugDisplaySettings.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/FilmGrain.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/LensFlareScreenSpacePostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Settings/URPReflectionProbeSettings.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/MotionBlur.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ColorLookup.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Settings/URPTerrainShaderSetting.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalChunk.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/TileSize.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/XRDepthMotionPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/PostProcess.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DrawSkyboxPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/LightCookieManager.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/ScreenSpaceShadows.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/StopNanPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ShaderBitArray.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalRenderingData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ScriptableRendererFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/DepthOfFieldGaussianPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRendererDebug.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/TransparentSettingsPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/XR/XRSystemUniversal.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DecalPreviewPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/CopyColorPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/MotionVectorRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalCreateDrawCallSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/RenderObjectsPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ChromaticAberration.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/Tonemapping.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRenderPipelineCore.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/IntermediateTextureMode.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ForwardRendererData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalResourceBase.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DrawScreenSpaceUIPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Data/PostProcessData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugDisplaySettingsCommon.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ShaderData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRenderPipeline.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DrawObjectsPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ColorCurves.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRendererRenderGraph.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalAdditionalCameraData.deprecated.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineRuntimeTextures.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Memory/Fixed2.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugDisplaySettingsLighting.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/History/SingleHistoryBase.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/UniversalRenderPipelineVolumeDebugSettings.deprecated.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalUpdateCulledSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DecalShaderPassNames.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/DisallowMultipleRendererFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/AssemblyInfo.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalSkipCulledSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalRendererData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ShadowCulling.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/LensDistortion.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/SurfaceCacheGIRendererFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/XROcclusionMeshPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ReflectionProbeManager.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DepthNormalOnlyPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/LensFlareDataDrivenPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/UniversalRenderPipelineDebugDisplayStats.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderingLayerUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/UniversalRenderPipelineVolumeDebugSettings.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalAdditionalLightData.deprecated.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineRuntimeShaders.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/SceneViewDrawMode.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/OnTilePostProcessResource.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/InclusiveRange.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/UniversalAdditionalLightData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/FullScreenPassRendererFeature_OldGUID.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ScriptableRenderer.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/StpPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/MainLightShadowCasterPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineRuntimeXRResources.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/ReflectionProbeMinMaxZJob.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderTargetHandle.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Data/UniversalRenderPipelineAsset.DefaultResources.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Data/RenderStateData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/FrameData/UniversalLightData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Debug/DebugHandler.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/Entities/DecalDrawSystem.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/CapturePass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/FullScreenPassRendererFeature.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Tiling/ZBinningJob.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/XR/XRPassUniversal.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/DepthOnlyPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/ScreenSpace/DecalGBufferRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRendererResources.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RenderPipelineResources/UniversalRenderPipelineEditorAssets.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/NoAllocUtils.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DBuffer/DecalForwardEmissivePass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DecalDrawErrorRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/CopyDepthPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/RenderObjects.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Overrides/ChannelMixer.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DBuffer/DBufferRenderPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/ScriptableRendererData.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/PostProcess/BloomPostProcessPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Passes/AdditionalLightsShadowCasterPass.cs" />
+    <Compile Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/DeferredLights.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Roboto-Bold - License.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile-2-Pass.shader" />
-    <None Include="Assets/BK_AlchemistHouse/Resources/Shaders/VolumetricLight.shader" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Unity - OFL.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Oswald-Bold - OFL.txt" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Roboto-Bold - AFL.txt" />
-    <None Include="Assets/BK_AlchemistHouse/Resources/Shaders/BlitAdd.shader" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Anton OFL.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/SDFFunctions.hlsl" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
-    <None Include="Assets/BK_AlchemistHouse/Resources/Shaders/Refraction.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
-    <None Include="Assets/Shaders/CauldronLiquid.shader" />
-    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
-    <None Include="Assets/BK_AlchemistHouse/Resources/Shaders/BilateralBlur.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
-    <None Include="Assets/Potions/ReadMe.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
-    <None Include="Assets/Scripts/hey.txt" />
-    <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
-    <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Bangers - OFL.txt" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Decal/DBuffer/DBufferClear.shader" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/FallbackMaterial.shader" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/FlatNormalResolution.compute" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VFXGraph/Shaders/VFXDefines.hlsl" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VFXGraph/Shaders/VFXLit.hlsl" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/Unity.RenderPipelines.Universal.Runtime.asmdef" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VFXGraph/Shaders/VFXCommon.hlsl" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/ScreenResolveUpsampling.compute" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/VFXGraph/Shaders/VFXLitPixelOutput.hlsl" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/PatchAllocation.compute" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/Debug.compute" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/ScreenResolveLookup.compute" />
+    <None Include="Library/PackageCache/com.unity.render-pipelines.universal@b6c3ec8118ec/Runtime/RendererFeatures/OnTileUberPost.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -673,6 +806,18 @@
       <HintPath>/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/Scripting/Managed/UnityEngine/UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/Scripting/Managed/UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library/PackageCache/com.unity.visualscripting@8bed5ad90189/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library/PackageCache/com.unity.collections@538ace9075bc/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -681,12 +826,36 @@
       <HintPath>Library/PackageCache/com.unity.ext.nunit@d8c07649098d/net40/unity-custom/nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library/PackageCache/com.unity.collab-proxy@a5329f833fa8/Lib/Editor/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library/PackageCache/com.unity.collab-proxy@a5329f833fa8/Lib/Editor/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library/PackageCache/com.unity.collab-proxy@a5329f833fa8/Lib/Editor/log4netPlastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library/PackageCache/com.unity.visualscripting@8bed5ad90189/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.IO.Hashing">
       <HintPath>Library/PackageCache/com.unity.collections@538ace9075bc/Unity.Collections.Tests/System.IO.Hashing/System.IO.Hashing.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library/PackageCache/com.unity.collab-proxy@a5329f833fa8/Lib/Editor/unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library/PackageCache/com.unity.visualscripting@8bed5ad90189/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library/PackageCache/com.unity.visualscripting@8bed5ad90189/Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
@@ -1191,63 +1360,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj" />
-    <ProjectReference Include="UnityEditor.UI.Analytics.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.csproj" />
-    <ProjectReference Include="Unity.Rendering.LightTransport.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj" />
-    <ProjectReference Include="Unity.Timeline.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj" />
-    <ProjectReference Include="Unity.PathTracing.Runtime.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj" />
-    <ProjectReference Include="Unity.Searcher.Editor.csproj" />
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
-    <ProjectReference Include="Unity.Burst.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.csproj" />
-    <ProjectReference Include="Unity.Mathematics.Editor.csproj" />
-    <ProjectReference Include="Unity.UnifiedRayTracing.Runtime.csproj" />
-    <ProjectReference Include="Unity.Rider.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualStudio.Editor.csproj" />
-    <ProjectReference Include="Unity.SurfaceCache.Runtime.csproj" />
-    <ProjectReference Include="Unity.Collections.csproj" />
-    <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.GPUDriven.Runtime.csproj" />
-    <ProjectReference Include="Unity.Timeline.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj" />
-    <ProjectReference Include="Unity.Mathematics.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj" />
-    <ProjectReference Include="UnityEngine.UI.csproj" />
-    <ProjectReference Include="Unity.Multiplayer.Center.Common.csproj" />
-    <ProjectReference Include="Unity.Burst.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.004.csproj" />
-    <ProjectReference Include="Unity.Multiplayer.Center.Editor.csproj" />
-    <ProjectReference Include="Unity.PathTracing.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.Collections.Editor.csproj" />
-    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
-    <ProjectReference Include="Unity.InputSystem.csproj" />
+    <ProjectReference Include="Unity.Mathematics.csproj" />
+    <ProjectReference Include="Unity.Burst.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.GPUDriven.Runtime.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
+    <ProjectReference Include="Unity.UnifiedRayTracing.Runtime.csproj" />
+    <ProjectReference Include="Unity.PathTracing.Runtime.csproj" />
+    <ProjectReference Include="Unity.SurfaceCache.Runtime.csproj" />
     <ProjectReference Include="UnityEditor.UI.csproj" />
+    <ProjectReference Include="UnityEngine.UI.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
