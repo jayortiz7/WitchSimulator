@@ -7,6 +7,7 @@ public class WitchController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
 
     public void PlayAddIngredient()
