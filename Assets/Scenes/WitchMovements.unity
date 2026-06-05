@@ -11003,7 +11003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.75, y: -0.25}
+  m_AnchoredPosition: {x: 0.8, y: -0.25}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805329711
@@ -12209,6 +12209,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 746564838}
+        m_TargetAssemblyTypeName: Reactions, Assembly-CSharp
+        m_MethodName: OnStirClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1037000373}
         m_TargetAssemblyTypeName: CauldronController, Assembly-CSharp
         m_MethodName: StartBoiling
@@ -12228,18 +12240,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 746564838}
-        m_TargetAssemblyTypeName: Reactions, Assembly-CSharp
-        m_MethodName: OnStirClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -28426,7 +28426,6 @@ SceneRoots:
   - {fileID: 281917702}
   - {fileID: 1821543351}
   - {fileID: 2136866125}
-  - {fileID: 1956973511}
   - {fileID: 374379051}
   - {fileID: 806367140}
   - {fileID: 2011736386}
@@ -28435,3 +28434,4 @@ SceneRoots:
   - {fileID: 897443848}
   - {fileID: 79362017}
   - {fileID: 196338979}
+  - {fileID: 1956973511}
