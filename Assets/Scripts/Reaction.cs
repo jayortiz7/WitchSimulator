@@ -152,6 +152,7 @@ public class Reactions : MonoBehaviour
 
     public void OnStirClicked()
     {
+        Debug.Log("Clicked stir");
         animator.SetTrigger("Stir");
         Material mat = GetPotionMaterial();
         if (mat != null) {
