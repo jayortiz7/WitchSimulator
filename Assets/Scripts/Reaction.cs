@@ -20,6 +20,8 @@ public class Reactions : MonoBehaviour
     private const int MAX_INGREDIENTS = 3;
     private SkinnedMeshRenderer[] witchRenderers;
     private Color[] originalColors;
+    private Quaternion originalRotation;
+    private Vector3 originalWitchPosition;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -63,6 +65,8 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         feedbackText.text = "Add 3 ingredients!";
         animator = GetComponent<Animator>();
+        originalRotation = witchCharacter.transform.rotation;
+        originalWitchPosition = witchCharacter.transform.position;
         cauldron = GameObject.Find("Cauldron");
         // for color changing witch, get all her components
         witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -77,7 +81,7 @@ public class Reactions : MonoBehaviour
     // for testing
     void Update(){
         if (Input.GetKeyDown(KeyCode.P))
-            StartCoroutine(TurnPurple());
+            StartCoroutine(TurnToStone());
         if (Input.GetKeyDown(KeyCode.S))
             sleepParticles.Play();
         if (Input.GetKeyDown(KeyCode.L))
@@ -225,6 +229,7 @@ public class Reactions : MonoBehaviour
         goblinCharacter.SetActive(false);
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
+        witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
     }
     // void SwapToGoblin() {
     //     // witchCharacter.SetActive(false);
@@ -282,7 +287,53 @@ public class Reactions : MonoBehaviour
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
                 witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t);
-            animator.speed = Mathf.Lerp(1f, 0f, t); // slow to a stop
+            animator.speed = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        // find feet position from mesh bounds
+        float minY = float.MaxValue;
+        foreach (var r in witchRenderers)
+            if (r.bounds.min.y < minY) minY = r.bounds.min.y;
+        Vector3 feetPos = new Vector3(witchCharacter.transform.position.x, minY, witchCharacter.transform.position.z);
+
+        // wobble with increasing amplitude, track exit velocity
+        float wobbleDuration = 2.8f;
+        float wobbleAmplitude = 4f;
+        float wobblePhase = Random.Range(0f, Mathf.PI * 2f);
+        elapsed = 0f;
+        float lastAngle = 0f;
+        float exitVelocity = 0f;
+        while (elapsed < wobbleDuration)
+        {
+            float prevAngle = lastAngle;
+            elapsed += Time.deltaTime;
+            float buildup = elapsed / wobbleDuration;
+            float angle = Mathf.Sin(elapsed * 1.5f * Mathf.PI * 2f + wobblePhase) * wobbleAmplitude * buildup;
+            float delta = angle - prevAngle;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            exitVelocity = delta / Time.deltaTime;
+            lastAngle = angle;
+            yield return null;
+        }
+        float fallDir = lastAngle >= 0f ? 1f : -1f;
+
+        // topple with initial velocity matching wobble exit
+        float toppleDuration = 0.4f;
+        float toppleAngle = 85f;
+        float targetDelta = toppleAngle * fallDir;
+        float accel = 2f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
+        float rotated = lastAngle;
+        elapsed = 0f;
+        while (elapsed < toppleDuration)
+        {
+            elapsed += Time.deltaTime;
+            float target = lastAngle + exitVelocity * elapsed + 0.5f * accel * elapsed * elapsed;
+            float delta = target - rotated;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            rotated = target;
             yield return null;
         }
     }
