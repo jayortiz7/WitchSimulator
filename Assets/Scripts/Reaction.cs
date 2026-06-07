@@ -18,8 +18,13 @@ public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
     private const int MAX_INGREDIENTS = 3;
+    private Coroutine feedbackCoroutine;
+    private bool reactionComplete = false;
     private SkinnedMeshRenderer[] witchRenderers;
     private Color[] originalColors;
+    private Quaternion originalRotation;
+    private Vector3 originalWitchPosition;
+    private Vector3 originalScale;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -66,6 +71,9 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         feedbackText.text = "Add 3 ingredients!";
         animator = GetComponent<Animator>();
+        originalRotation = witchCharacter.transform.rotation;
+        originalWitchPosition = witchCharacter.transform.position;
+        originalScale = witchCharacter.transform.localScale;
         cauldron = GameObject.Find("Cauldron");
         // for color changing witch, get all her components
         witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -80,7 +88,7 @@ public class Reactions : MonoBehaviour
     // for testing
     void Update(){
         if (Input.GetKeyDown(KeyCode.P))
-            StartCoroutine(TurnPurple());
+            StartCoroutine(TurnToStone());
         if (Input.GetKeyDown(KeyCode.S))
             sleepParticles.Play();
         if (Input.GetKeyDown(KeyCode.L))
@@ -101,7 +109,8 @@ public class Reactions : MonoBehaviour
 
     public void OnIngredientClicked(string ingredient) {
 
-        animator.SetTrigger("AddIngredient");
+        // if animation happened, immediately return
+        if (reactionComplete) return;
 
         if (ingredients.Count >= MAX_INGREDIENTS) {
             feedbackText.gameObject.SetActive(true);
@@ -111,10 +120,12 @@ public class Reactions : MonoBehaviour
         boilButton.gameObject.SetActive(true);
 
         if (ingredients.Contains(ingredient)) {
-            feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Add a different ingredient!";
+            if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = StartCoroutine(ShowTempFeedback("Add a different ingredient!", 3f));
             return;
         }
+
+        animator.SetTrigger("AddIngredient");
 
         // if not already in ingredients, add to ingredients
         ingredients.Add(ingredient);
@@ -122,7 +133,7 @@ public class Reactions : MonoBehaviour
         {
             boilButton.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Click stir";
+            feedbackText.text = "Click stir!";
             stirButton.gameObject.SetActive(true);
             return;
         }
@@ -163,6 +174,7 @@ public class Reactions : MonoBehaviour
         }
         stirButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(true);
+        feedbackText.gameObject.SetActive(false);
     }
 
     public void OnDrinkClicked()
@@ -176,7 +188,7 @@ public class Reactions : MonoBehaviour
                 feedbackText.text = "Love potion! I think shes into you ;)";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
-                // shrinking/growing reaction
+                StartCoroutine(ShrinkDown());
                 feedbackText.text = "Shrinking potion!";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
@@ -220,12 +232,15 @@ public class Reactions : MonoBehaviour
                 Invoke("SwapToGoblin", 4.0f);
                 feedbackText.text = "Goblin potion! Gone full goblin mode!";
             }
+            reactionComplete = true;
+            StartCoroutine(ShowReactionCompleteText(4f));
         }));
     }
 
     public void OnResetClicked()
     {
         ingredients.Clear();
+        reactionComplete = false;
         stirButton.gameObject.SetActive(false);
         boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
@@ -242,6 +257,8 @@ public class Reactions : MonoBehaviour
         animalCharacter.SetActive(false);
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
+        witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
+        witchCharacter.transform.localScale = originalScale;
     }
 
     void SwapToGoblin() {
@@ -276,6 +293,19 @@ public class Reactions : MonoBehaviour
         }
     }
 
+    private IEnumerator ShrinkDown()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            witchCharacter.transform.localScale = Vector3.Lerp(originalScale, originalScale * 0.17f, t);
+            yield return null;
+        }
+    }
+
     private IEnumerator TurnToStone()
     {
         Color stone = new Color(0.3f, 0.27f, 0.25f);
@@ -288,7 +318,53 @@ public class Reactions : MonoBehaviour
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
                 witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t);
-            animator.speed = Mathf.Lerp(1f, 0f, t); // slow to a stop
+            animator.speed = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        // find feet position from mesh bounds
+        float minY = float.MaxValue;
+        foreach (var r in witchRenderers)
+            if (r.bounds.min.y < minY) minY = r.bounds.min.y;
+        Vector3 feetPos = new Vector3(witchCharacter.transform.position.x, minY, witchCharacter.transform.position.z);
+
+        // wobble with increasing amplitude, track exit velocity
+        float wobbleDuration = 2.8f;
+        float wobbleAmplitude = 4f;
+        float wobblePhase = Random.Range(0f, Mathf.PI * 2f);
+        elapsed = 0f;
+        float lastAngle = 0f;
+        float exitVelocity = 0f;
+        while (elapsed < wobbleDuration)
+        {
+            float prevAngle = lastAngle;
+            elapsed += Time.deltaTime;
+            float buildup = elapsed / wobbleDuration;
+            float angle = Mathf.Sin(elapsed * 1.5f * Mathf.PI * 2f + wobblePhase) * wobbleAmplitude * buildup;
+            float delta = angle - prevAngle;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            exitVelocity = delta / Time.deltaTime;
+            lastAngle = angle;
+            yield return null;
+        }
+        float fallDir = lastAngle >= 0f ? 1f : -1f;
+
+        // topple with initial velocity matching wobble exit
+        float toppleDuration = 0.4f;
+        float toppleAngle = 85f;
+        float targetDelta = toppleAngle * fallDir;
+        float accel = 2f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
+        float rotated = lastAngle;
+        elapsed = 0f;
+        while (elapsed < toppleDuration)
+        {
+            elapsed += Time.deltaTime;
+            float target = lastAngle + exitVelocity * elapsed + 0.5f * accel * elapsed * elapsed;
+            float delta = target - rotated;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            rotated = target;
             yield return null;
         }
     }
@@ -329,6 +405,22 @@ public class Reactions : MonoBehaviour
         yield return null;
         witchCharacter.SetActive(false);
         smokeScreen.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    private IEnumerator ShowTempFeedback(string message, float duration)
+    {
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = message;
+        yield return new WaitForSeconds(duration);
+        feedbackText.text = ingredients.Count >= MAX_INGREDIENTS ? "Click stir!" : "Add 3 ingredients!";
+    }
+
+    // wait a few seconds b4 prompting user to play again
+    private IEnumerator ShowReactionCompleteText(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = "Click reset to play again!";
     }
 
 }
