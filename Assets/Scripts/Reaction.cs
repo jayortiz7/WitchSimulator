@@ -44,6 +44,7 @@ public class Reactions : MonoBehaviour
 
     public Button drinkButton;
     public Button stirButton;
+    public Button boilButton;
     public Button resetButton;
     public TMP_Text feedbackText;
     private Animator animator;
@@ -55,12 +56,14 @@ public class Reactions : MonoBehaviour
     public ParticleSystem smokeScreen;
     public GameObject goblinCharacter;
     public GameObject witchCharacter;
+    public GameObject animalCharacter;
 
 
 
     void Start()
     {
         stirButton.gameObject.SetActive(false);
+        boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         resetButton.gameObject.SetActive(true);
         feedbackText.gameObject.SetActive(true);
@@ -100,11 +103,9 @@ public class Reactions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             smokeScreen.Play();
-            Invoke("SwapToAnimal", 1.5f);
+            Invoke("SwapToAnimal", 2.0f);
         }
     }
-
-
 
     public void OnIngredientClicked(string ingredient) {
 
@@ -116,6 +117,7 @@ public class Reactions : MonoBehaviour
             feedbackText.text = "Cauldron full, click stir";
             return;
         }
+        boilButton.gameObject.SetActive(true);
 
         if (ingredients.Contains(ingredient)) {
             if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
@@ -129,6 +131,7 @@ public class Reactions : MonoBehaviour
         ingredients.Add(ingredient);
         if (ingredients.Count == MAX_INGREDIENTS)
         {
+            boilButton.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Click stir!";
             stirButton.gameObject.SetActive(true);
@@ -182,40 +185,52 @@ public class Reactions : MonoBehaviour
             if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // love potion reaction
                 loveParticles.Play();
+                feedbackText.text = "Love potion! I think shes into you ;)";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
                 StartCoroutine(ShrinkDown());
+                feedbackText.text = "Shrinking potion!";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // sleeping reaction
                 sleepParticles.Play();
+                feedbackText.text = "Sleep potion! Nighty night...";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
                 // explosion reaction
+                feedbackText.text = "Explosion potion! AHHH I BLEW UP";
             }
             else if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into animal reaction
+                smokeScreen.Play();
+                Invoke("SwapToAnimal", 2.0f);
+                feedbackText.text = "Animal potion! MOOOOO";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into stone reaction
                 StartCoroutine(TurnToStone());
+                feedbackText.text = "Turn to stone potion! I can't move";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // levitation reaction
                 animator.SetTrigger("Levitate");
+                feedbackText.text = "Levitation potion! Up up and awayyy";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // strength reaction
+                feedbackText.text = "Strength potion!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
                 // turn purple reaction
                 // coroutine moves a little each frame for couple seconds
                 StartCoroutine(TurnPurple());
+                feedbackText.text = "Purple potion!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into goblin reaction
-                // animator.SetTrigger("Spin");
-                // Invoke("SwapToGoblin", 9.0f);
+                animator.SetTrigger("Spin");
+                Invoke("SwapToGoblin", 4.0f);
+                feedbackText.text = "Goblin potion! Gone full goblin mode!";
             }
             reactionComplete = true;
             StartCoroutine(ShowReactionCompleteText(4f));
@@ -227,6 +242,7 @@ public class Reactions : MonoBehaviour
         ingredients.Clear();
         reactionComplete = false;
         stirButton.gameObject.SetActive(false);
+        boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(true);
         feedbackText.text = "Add 3 ingredients!";
@@ -238,23 +254,13 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         }
         goblinCharacter.SetActive(false);
+        animalCharacter.SetActive(false);
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
         witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
         witchCharacter.transform.localScale = originalScale;
     }
-    // void SwapToGoblin() {
-    //     // witchCharacter.SetActive(false);
-    //     // goblinCharacter.SetActive(true);
-    //     // animator = goblinCharacter.GetComponent<Animator>();
-    //     // animator.Play("Spin", 0, 0.01f);
-    //     witchCharacter.SetActive(false);
-    //     goblinCharacter.SetActive(true);
-    //     // match the goblin's spin to wherever the witch's spin currently is
-    //     float currentTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1f;
-    //     animator = goblinCharacter.GetComponent<Animator>();
-    //     animator.Play("Spin", 0, currentTime);
-    // }
+
     void SwapToGoblin() {
         StartCoroutine(SmoothSwap());
     }
@@ -393,9 +399,9 @@ public class Reactions : MonoBehaviour
 
     private IEnumerator SmoothAnimalSwap()
     {
-        goblinCharacter.SetActive(true);
-        goblinCharacter.transform.position = witchCharacter.transform.position;
-        goblinCharacter.transform.rotation = witchCharacter.transform.rotation;
+        animalCharacter.SetActive(true);
+        // animalCharacter.transform.position = witchCharacter.transform.position;
+        // animalCharacter.transform.rotation = witchCharacter.transform.rotation;
         yield return null;
         witchCharacter.SetActive(false);
         smokeScreen.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
