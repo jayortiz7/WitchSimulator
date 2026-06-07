@@ -18,10 +18,13 @@ public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
     private const int MAX_INGREDIENTS = 3;
+    private Coroutine feedbackCoroutine;
+    private bool reactionComplete = false;
     private SkinnedMeshRenderer[] witchRenderers;
     private Color[] originalColors;
     private Quaternion originalRotation;
     private Vector3 originalWitchPosition;
+    private Vector3 originalScale;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -67,6 +70,7 @@ public class Reactions : MonoBehaviour
         animator = GetComponent<Animator>();
         originalRotation = witchCharacter.transform.rotation;
         originalWitchPosition = witchCharacter.transform.position;
+        originalScale = witchCharacter.transform.localScale;
         cauldron = GameObject.Find("Cauldron");
         // for color changing witch, get all her components
         witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -104,7 +108,8 @@ public class Reactions : MonoBehaviour
 
     public void OnIngredientClicked(string ingredient) {
 
-        animator.SetTrigger("AddIngredient");
+        // if animation happened, immediately return
+        if (reactionComplete) return;
 
         if (ingredients.Count >= MAX_INGREDIENTS) {
             feedbackText.gameObject.SetActive(true);
@@ -113,17 +118,19 @@ public class Reactions : MonoBehaviour
         }
 
         if (ingredients.Contains(ingredient)) {
-            feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Add a different ingredient!";
+            if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = StartCoroutine(ShowTempFeedback("Add a different ingredient!", 3f));
             return;
         }
+
+        animator.SetTrigger("AddIngredient");
 
         // if not already in ingredients, add to ingredients
         ingredients.Add(ingredient);
         if (ingredients.Count == MAX_INGREDIENTS)
         {
             feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Click stir";
+            feedbackText.text = "Click stir!";
             stirButton.gameObject.SetActive(true);
             return;
         }
@@ -164,6 +171,7 @@ public class Reactions : MonoBehaviour
         }
         stirButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(true);
+        feedbackText.gameObject.SetActive(false);
     }
 
     public void OnDrinkClicked()
@@ -176,7 +184,7 @@ public class Reactions : MonoBehaviour
                 loveParticles.Play();
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
-                // shrinking/growing reaction
+                StartCoroutine(ShrinkDown());
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // sleeping reaction
@@ -209,12 +217,15 @@ public class Reactions : MonoBehaviour
                 // animator.SetTrigger("Spin");
                 // Invoke("SwapToGoblin", 9.0f);
             }
+            reactionComplete = true;
+            StartCoroutine(ShowReactionCompleteText(4f));
         }));
     }
 
     public void OnResetClicked()
     {
         ingredients.Clear();
+        reactionComplete = false;
         stirButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(true);
@@ -230,6 +241,7 @@ public class Reactions : MonoBehaviour
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
         witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
+        witchCharacter.transform.localScale = originalScale;
     }
     // void SwapToGoblin() {
     //     // witchCharacter.SetActive(false);
@@ -271,6 +283,19 @@ public class Reactions : MonoBehaviour
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
                 witchRenderers[i].material.color = Color.Lerp(originalColors[i], purple, t);
+            yield return null;
+        }
+    }
+
+    private IEnumerator ShrinkDown()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            witchCharacter.transform.localScale = Vector3.Lerp(originalScale, originalScale * 0.17f, t);
             yield return null;
         }
     }
@@ -374,6 +399,22 @@ public class Reactions : MonoBehaviour
         yield return null;
         witchCharacter.SetActive(false);
         smokeScreen.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    private IEnumerator ShowTempFeedback(string message, float duration)
+    {
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = message;
+        yield return new WaitForSeconds(duration);
+        feedbackText.text = ingredients.Count >= MAX_INGREDIENTS ? "Click stir!" : "Add 3 ingredients!";
+    }
+
+    // wait a few seconds b4 prompting user to play again
+    private IEnumerator ShowReactionCompleteText(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = "Click reset to play again!";
     }
 
 }
