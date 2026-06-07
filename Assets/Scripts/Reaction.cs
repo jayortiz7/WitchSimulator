@@ -18,8 +18,13 @@ public class Reactions : MonoBehaviour
 {
     private HashSet<string> ingredients = new HashSet<string>();
     private const int MAX_INGREDIENTS = 3;
+    private Coroutine feedbackCoroutine;
+    private bool reactionComplete = false;
     private SkinnedMeshRenderer[] witchRenderers;
     private Color[] originalColors;
+    private Quaternion originalRotation;
+    private Vector3 originalWitchPosition;
+    private Vector3 originalScale;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -39,6 +44,7 @@ public class Reactions : MonoBehaviour
 
     public Button drinkButton;
     public Button stirButton;
+    public Button boilButton;
     public Button resetButton;
     public TMP_Text feedbackText;
     private Animator animator;
@@ -50,12 +56,14 @@ public class Reactions : MonoBehaviour
     public ParticleSystem smokeScreen;
     public GameObject goblinCharacter;
     public GameObject witchCharacter;
+    public GameObject animalCharacter;
 
 
 
     void Start()
     {
         stirButton.gameObject.SetActive(false);
+        boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         resetButton.gameObject.SetActive(true);
         feedbackText.gameObject.SetActive(true);
@@ -63,6 +71,9 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         feedbackText.text = "Add 3 ingredients!";
         animator = GetComponent<Animator>();
+        originalRotation = witchCharacter.transform.rotation;
+        originalWitchPosition = witchCharacter.transform.position;
+        originalScale = witchCharacter.transform.localScale;
         cauldron = GameObject.Find("Cauldron");
         // for color changing witch, get all her components
         witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -77,7 +88,7 @@ public class Reactions : MonoBehaviour
     // for testing
     void Update(){
         if (Input.GetKeyDown(KeyCode.P))
-            StartCoroutine(TurnPurple());
+            StartCoroutine(TurnToStone());
         if (Input.GetKeyDown(KeyCode.S))
             sleepParticles.Play();
         if (Input.GetKeyDown(KeyCode.L))
@@ -92,34 +103,37 @@ public class Reactions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             smokeScreen.Play();
-            Invoke("SwapToAnimal", 1.5f);
+            Invoke("SwapToAnimal", 2.0f);
         }
     }
 
-
-
     public void OnIngredientClicked(string ingredient) {
 
-        animator.SetTrigger("AddIngredient");
+        // if animation happened, immediately return
+        if (reactionComplete) return;
 
         if (ingredients.Count >= MAX_INGREDIENTS) {
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Cauldron full, click stir";
             return;
         }
+        boilButton.gameObject.SetActive(true);
 
         if (ingredients.Contains(ingredient)) {
-            feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Add a different ingredient!";
+            if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = StartCoroutine(ShowTempFeedback("Add a different ingredient!", 3f));
             return;
         }
+
+        animator.SetTrigger("AddIngredient");
 
         // if not already in ingredients, add to ingredients
         ingredients.Add(ingredient);
         if (ingredients.Count == MAX_INGREDIENTS)
         {
+            boilButton.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(true);
-            feedbackText.text = "Click stir";
+            feedbackText.text = "Click stir!";
             stirButton.gameObject.SetActive(true);
             return;
         }
@@ -160,6 +174,7 @@ public class Reactions : MonoBehaviour
         }
         stirButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(true);
+        feedbackText.gameObject.SetActive(false);
     }
 
     public void OnDrinkClicked()
@@ -170,48 +185,64 @@ public class Reactions : MonoBehaviour
             if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // love potion reaction
                 loveParticles.Play();
+                feedbackText.text = "Love potion! I think shes into you ;)";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
-                // shrinking/growing reaction
+                StartCoroutine(ShrinkDown());
+                feedbackText.text = "Shrinking potion!";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // sleeping reaction
                 sleepParticles.Play();
+                feedbackText.text = "Sleep potion! Nighty night...";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
                 // explosion reaction
+                feedbackText.text = "Explosion potion! AHHH I BLEW UP";
             }
             else if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into animal reaction
+                smokeScreen.Play();
+                Invoke("SwapToAnimal", 2.0f);
+                feedbackText.text = "Animal potion! MOOOOO";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into stone reaction
                 StartCoroutine(TurnToStone());
+                feedbackText.text = "Turn to stone potion! I can't move";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // levitation reaction
                 animator.SetTrigger("Levitate");
+                feedbackText.text = "Levitation potion! Up up and awayyy";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // strength reaction
+                feedbackText.text = "Strength potion!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
                 // turn purple reaction
                 // coroutine moves a little each frame for couple seconds
                 StartCoroutine(TurnPurple());
+                feedbackText.text = "Purple potion!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into goblin reaction
-                // animator.SetTrigger("Spin");
-                // Invoke("SwapToGoblin", 9.0f);
+                animator.SetTrigger("Spin");
+                Invoke("SwapToGoblin", 4.0f);
+                feedbackText.text = "Goblin potion! Gone full goblin mode!";
             }
+            reactionComplete = true;
+            StartCoroutine(ShowReactionCompleteText(4f));
         }));
     }
 
     public void OnResetClicked()
     {
         ingredients.Clear();
+        reactionComplete = false;
         stirButton.gameObject.SetActive(false);
+        boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(true);
         feedbackText.text = "Add 3 ingredients!";
@@ -223,21 +254,13 @@ public class Reactions : MonoBehaviour
             potionLiquidRenderer.material = defaultPotionMaterial;
         }
         goblinCharacter.SetActive(false);
+        animalCharacter.SetActive(false);
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
+        witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
+        witchCharacter.transform.localScale = originalScale;
     }
-    // void SwapToGoblin() {
-    //     // witchCharacter.SetActive(false);
-    //     // goblinCharacter.SetActive(true);
-    //     // animator = goblinCharacter.GetComponent<Animator>();
-    //     // animator.Play("Spin", 0, 0.01f);
-    //     witchCharacter.SetActive(false);
-    //     goblinCharacter.SetActive(true);
-    //     // match the goblin's spin to wherever the witch's spin currently is
-    //     float currentTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1f;
-    //     animator = goblinCharacter.GetComponent<Animator>();
-    //     animator.Play("Spin", 0, currentTime);
-    // }
+
     void SwapToGoblin() {
         StartCoroutine(SmoothSwap());
     }
@@ -270,6 +293,19 @@ public class Reactions : MonoBehaviour
         }
     }
 
+    private IEnumerator ShrinkDown()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            witchCharacter.transform.localScale = Vector3.Lerp(originalScale, originalScale * 0.17f, t);
+            yield return null;
+        }
+    }
+
     private IEnumerator TurnToStone()
     {
         Color stone = new Color(0.3f, 0.27f, 0.25f);
@@ -282,7 +318,53 @@ public class Reactions : MonoBehaviour
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
                 witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t);
-            animator.speed = Mathf.Lerp(1f, 0f, t); // slow to a stop
+            animator.speed = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        // find feet position from mesh bounds
+        float minY = float.MaxValue;
+        foreach (var r in witchRenderers)
+            if (r.bounds.min.y < minY) minY = r.bounds.min.y;
+        Vector3 feetPos = new Vector3(witchCharacter.transform.position.x, minY, witchCharacter.transform.position.z);
+
+        // wobble with increasing amplitude, track exit velocity
+        float wobbleDuration = 2.8f;
+        float wobbleAmplitude = 4f;
+        float wobblePhase = Random.Range(0f, Mathf.PI * 2f);
+        elapsed = 0f;
+        float lastAngle = 0f;
+        float exitVelocity = 0f;
+        while (elapsed < wobbleDuration)
+        {
+            float prevAngle = lastAngle;
+            elapsed += Time.deltaTime;
+            float buildup = elapsed / wobbleDuration;
+            float angle = Mathf.Sin(elapsed * 1.5f * Mathf.PI * 2f + wobblePhase) * wobbleAmplitude * buildup;
+            float delta = angle - prevAngle;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            exitVelocity = delta / Time.deltaTime;
+            lastAngle = angle;
+            yield return null;
+        }
+        float fallDir = lastAngle >= 0f ? 1f : -1f;
+
+        // topple with initial velocity matching wobble exit
+        float toppleDuration = 0.4f;
+        float toppleAngle = 85f;
+        float targetDelta = toppleAngle * fallDir;
+        float accel = 2f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
+        float rotated = lastAngle;
+        elapsed = 0f;
+        while (elapsed < toppleDuration)
+        {
+            elapsed += Time.deltaTime;
+            float target = lastAngle + exitVelocity * elapsed + 0.5f * accel * elapsed * elapsed;
+            float delta = target - rotated;
+            witchCharacter.transform.RotateAround(feetPos, Vector3.forward, delta);
+            rotated = target;
             yield return null;
         }
     }
@@ -317,12 +399,28 @@ public class Reactions : MonoBehaviour
 
     private IEnumerator SmoothAnimalSwap()
     {
-        goblinCharacter.SetActive(true);
-        goblinCharacter.transform.position = witchCharacter.transform.position;
-        goblinCharacter.transform.rotation = witchCharacter.transform.rotation;
+        animalCharacter.SetActive(true);
+        // animalCharacter.transform.position = witchCharacter.transform.position;
+        // animalCharacter.transform.rotation = witchCharacter.transform.rotation;
         yield return null;
         witchCharacter.SetActive(false);
         smokeScreen.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    private IEnumerator ShowTempFeedback(string message, float duration)
+    {
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = message;
+        yield return new WaitForSeconds(duration);
+        feedbackText.text = ingredients.Count >= MAX_INGREDIENTS ? "Click stir!" : "Add 3 ingredients!";
+    }
+
+    // wait a few seconds b4 prompting user to play again
+    private IEnumerator ShowReactionCompleteText(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = "Click reset to play again!";
     }
 
 }
