@@ -22,6 +22,7 @@ public class Reactions : MonoBehaviour
     private Color[] originalColors;
     private Quaternion originalRotation;
     private Vector3 originalWitchPosition;
+    private Vector3 originalScale;
 
     // Materials for the 3D cauldron liquid — assign each in the Inspector
     public Material lovePotionMaterial;
@@ -67,6 +68,7 @@ public class Reactions : MonoBehaviour
         animator = GetComponent<Animator>();
         originalRotation = witchCharacter.transform.rotation;
         originalWitchPosition = witchCharacter.transform.position;
+        originalScale = witchCharacter.transform.localScale;
         cauldron = GameObject.Find("Cauldron");
         // for color changing witch, get all her components
         witchRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -176,7 +178,7 @@ public class Reactions : MonoBehaviour
                 loveParticles.Play();
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
-                // shrinking/growing reaction
+                StartCoroutine(ShrinkDown());
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // sleeping reaction
@@ -230,6 +232,7 @@ public class Reactions : MonoBehaviour
         animator = GetComponent<Animator>();
         witchCharacter.SetActive(true);
         witchCharacter.transform.SetPositionAndRotation(originalWitchPosition, originalRotation);
+        witchCharacter.transform.localScale = originalScale;
     }
     // void SwapToGoblin() {
     //     // witchCharacter.SetActive(false);
@@ -271,6 +274,19 @@ public class Reactions : MonoBehaviour
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
                 witchRenderers[i].material.color = Color.Lerp(originalColors[i], purple, t);
+            yield return null;
+        }
+    }
+
+    private IEnumerator ShrinkDown()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            witchCharacter.transform.localScale = Vector3.Lerp(originalScale, originalScale * 0.17f, t);
             yield return null;
         }
     }
