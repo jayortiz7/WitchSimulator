@@ -55,6 +55,7 @@ public class Reactions : MonoBehaviour
     public ParticleSystem sleepParticles;
     public ParticleSystem loveParticles;
     public ParticleSystem smokeScreen;
+    public ParticleSystem explosionParticles;
     public GameObject goblinCharacter;
     public GameObject witchCharacter;
     public GameObject animalCharacter;
@@ -107,6 +108,11 @@ public class Reactions : MonoBehaviour
         {
             smokeScreen.Play();
             Invoke("SwapToAnimal", 2.0f);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            explosionParticles.Play();
+            StartCoroutine(Disappear());
         }
     }
 
@@ -216,6 +222,8 @@ public class Reactions : MonoBehaviour
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
                 // explosion reaction
+                explosionParticles.Play();
+                StartCoroutine(Disappear());
                 feedbackText.text = "Explosion potion! YOU BLEW HER UP";
             }
             else if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
@@ -236,6 +244,7 @@ public class Reactions : MonoBehaviour
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // strength reaction
+                animator.SetTrigger("Flex");
                 feedbackText.text = "Strength potion! She might be invincible!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
@@ -271,6 +280,10 @@ public class Reactions : MonoBehaviour
         sleepParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         if (defaultPotionMaterial != null) {
             potionLiquidRenderer.material = defaultPotionMaterial;
+        }
+        foreach (var r in witchRenderers)
+        {
+            r.enabled = true;
         }
         goblinCharacter.SetActive(false);
         animalCharacter.SetActive(false);
@@ -450,5 +463,23 @@ public class Reactions : MonoBehaviour
         ingredientsText.text += ingredient + "\n";
     }
 }
+
+    private void UpdateIngredientsDisplay()
+{
+    ingredientsText.text = "In the cauldron...\n";
+    foreach (string ingredient in ingredients)
+    {
+        ingredientsText.text += ingredient + "\n";
+    }
+}
+
+    private IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(0.9f);
+        foreach (var r in witchRenderers) {
+            r.enabled = false;
+        }
+        explosionParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
 
 }
