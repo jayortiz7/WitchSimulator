@@ -464,15 +464,6 @@ public class Reactions : MonoBehaviour
     }
 }
 
-    private void UpdateIngredientsDisplay()
-{
-    ingredientsText.text = "In the cauldron...\n";
-    foreach (string ingredient in ingredients)
-    {
-        ingredientsText.text += ingredient + "\n";
-    }
-}
-
     private IEnumerator Disappear()
     {
         yield return new WaitForSeconds(0.9f);
