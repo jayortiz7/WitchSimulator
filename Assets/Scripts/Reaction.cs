@@ -44,10 +44,11 @@ public class Reactions : MonoBehaviour
 
     public Button drinkButton;
     public Button stirButton;
-    public Button boilButton;
+    //public Button boilButton;
     public Button resetButton;
     public TMP_Text feedbackText;
     private Animator animator;
+    public TMP_Text ingredientsText;
 
     // Inspector references to cauldron
     public GameObject cauldron;
@@ -60,10 +61,12 @@ public class Reactions : MonoBehaviour
 
 
 
+
+
     void Start()
     {
         stirButton.gameObject.SetActive(false);
-        boilButton.gameObject.SetActive(false);
+        //boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         resetButton.gameObject.SetActive(true);
         feedbackText.gameObject.SetActive(true);
@@ -110,14 +113,17 @@ public class Reactions : MonoBehaviour
     public void OnIngredientClicked(string ingredient) {
 
         // if animation happened, immediately return
-        if (reactionComplete) return;
+        if (reactionComplete){ 
+            
+            return;
+        }
 
         if (ingredients.Count >= MAX_INGREDIENTS) {
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Cauldron full, click stir";
             return;
         }
-        boilButton.gameObject.SetActive(true);
+        //boilButton.gameObject.SetActive(true);
 
         if (ingredients.Contains(ingredient)) {
             if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
@@ -129,9 +135,10 @@ public class Reactions : MonoBehaviour
 
         // if not already in ingredients, add to ingredients
         ingredients.Add(ingredient);
+        UpdateIngredientsDisplay();
         if (ingredients.Count == MAX_INGREDIENTS)
         {
-            boilButton.gameObject.SetActive(false);
+            //boilButton.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(true);
             feedbackText.text = "Click stir!";
             stirButton.gameObject.SetActive(true);
@@ -142,22 +149,31 @@ public class Reactions : MonoBehaviour
     private Material GetPotionMaterial()
     {
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice"))
+
             return lovePotionMaterial;   // love potion
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool"))
+
             return shrinkingMaterial;  // shrinking/growing
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears"))
+
             return sleepingMaterial;   // sleeping
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice"))
+
             return explosionMaterial;  // explosion
         if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice"))
+    
             return animalMaterial;  // turn into animal
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice"))
+     
             return stoneMaterial;    // turn into stone
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice"))
+
             return levitationMaterial;   // levitation
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears"))
+     
             return strengthMaterial;    // strength
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears"))
+      
             return purpleMaterial;   // turn purple
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice"))
             return goblinMaterial;  // turn into goblin
@@ -181,15 +197,17 @@ public class Reactions : MonoBehaviour
     {
         animator.SetTrigger("Drink");
         drinkButton.gameObject.SetActive(false);
+        //feedbackText.gameObject.SetActive(true);
         StartCoroutine(WaitThen(() => {
+            feedbackText.gameObject.SetActive(true);
             if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // love potion reaction
                 loveParticles.Play();
-                feedbackText.text = "Love potion! I think shes into you ;)";
+                feedbackText.text = "Love potion! I think she's into you...";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool")) {
                 StartCoroutine(ShrinkDown());
-                feedbackText.text = "Shrinking potion!";
+                feedbackText.text = "You shrunk the witch!";
             }
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // sleeping reaction
@@ -198,7 +216,7 @@ public class Reactions : MonoBehaviour
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Black Magic Bean Juice")) {
                 // explosion reaction
-                feedbackText.text = "Explosion potion! AHHH I BLEW UP";
+                feedbackText.text = "Explosion potion! YOU BLEW HER UP";
             }
             else if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into animal reaction
@@ -209,7 +227,7 @@ public class Reactions : MonoBehaviour
             else if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into stone reaction
                 StartCoroutine(TurnToStone());
-                feedbackText.text = "Turn to stone potion! I can't move";
+                feedbackText.text = "You turned the witch to stone! Look at her, she's a real rockstar!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice")) {
                 // levitation reaction
@@ -218,13 +236,13 @@ public class Reactions : MonoBehaviour
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears")) {
                 // strength reaction
-                feedbackText.text = "Strength potion!";
+                feedbackText.text = "Strength potion! She might be invincible!";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears")) {
                 // turn purple reaction
                 // coroutine moves a little each frame for couple seconds
                 StartCoroutine(TurnPurple());
-                feedbackText.text = "Purple potion!";
+                feedbackText.text = "You turned her purple! Barney who?";
             }
             else if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice")) {
                 // turn into goblin reaction
@@ -241,8 +259,9 @@ public class Reactions : MonoBehaviour
     {
         ingredients.Clear();
         reactionComplete = false;
+        UpdateIngredientsDisplay();
         stirButton.gameObject.SetActive(false);
-        boilButton.gameObject.SetActive(false);
+        //boilButton.gameObject.SetActive(false);
         drinkButton.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(true);
         feedbackText.text = "Add 3 ingredients!";
@@ -422,5 +441,14 @@ public class Reactions : MonoBehaviour
         feedbackText.gameObject.SetActive(true);
         feedbackText.text = "Click reset to play again!";
     }
+
+    private void UpdateIngredientsDisplay()
+{
+    ingredientsText.text = "In the cauldron...\n";
+    foreach (string ingredient in ingredients)
+    {
+        ingredientsText.text += ingredient + "\n";
+    }
+}
 
 }
