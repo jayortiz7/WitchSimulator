@@ -127,6 +127,8 @@ public class Reactions : MonoBehaviour
 
         // if not already in ingredients, add to ingredients
         ingredients.Add(ingredient);
+        Debug.Log("Added ingredient: " + ingredient);
+        cauldron.GetComponent<CauldronController>().StartPour();
         if (ingredients.Count == MAX_INGREDIENTS)
         {
             feedbackText.gameObject.SetActive(true);
