@@ -38,7 +38,8 @@ public class Reactions : MonoBehaviour
     public Material purpleMaterial;
     public Material goblinMaterial;
     public Material defaultPotionMaterial;   // the starting liquid material
-
+    public Material turnToStone;
+    
     // The Renderer on the 3D liquid mesh inside the cauldron
     public Renderer potionLiquidRenderer;
 
@@ -340,27 +341,31 @@ public class Reactions : MonoBehaviour
 
     private IEnumerator TurnToStone()
     {
-        Color stone = new Color(0.3f, 0.27f, 0.25f);
-        float duration = 1.5f;
+        Color stone = new Color(0.4f, 0.4f, 0.4f);
+        float duration = 1.9f;
         float elapsed = 0f;
 
+        Debug.Log("witchRenderers count: " + witchRenderers.Length);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
             for (int i = 0; i < witchRenderers.Length; i++)
-                witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t);
+                witchRenderers[i].material.color = Color.Lerp(originalColors[i], stone, t * t);
             animator.speed = Mathf.Lerp(1f, 0f, t);
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        foreach (var r in witchRenderers)
+            r.material = turnToStone;
+
+        yield return new WaitForSeconds(0.2f);
 
         // find feet position from mesh bounds
         float minY = float.MaxValue;
         foreach (var r in witchRenderers)
             if (r.bounds.min.y < minY) minY = r.bounds.min.y;
-        Vector3 feetPos = new Vector3(witchCharacter.transform.position.x, minY, witchCharacter.transform.position.z);
+        Vector3 feetPos = new Vector3(witchCharacter.transform.position.x, minY + 1.7f, witchCharacter.transform.position.z);
 
         // wobble with increasing amplitude, track exit velocity
         float wobbleDuration = 2.8f;
@@ -387,7 +392,7 @@ public class Reactions : MonoBehaviour
         float toppleDuration = 0.4f;
         float toppleAngle = 85f;
         float targetDelta = toppleAngle * fallDir;
-        float accel = 2f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
+        float accel = 1.7f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
         float rotated = lastAngle;
         elapsed = 0f;
         while (elapsed < toppleDuration)
