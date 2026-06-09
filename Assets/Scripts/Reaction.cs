@@ -392,7 +392,7 @@ public class Reactions : MonoBehaviour
         float toppleDuration = 0.4f;
         float toppleAngle = 85f;
         float targetDelta = toppleAngle * fallDir;
-        float accel = 1.7f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
+        float accel = 2f * (targetDelta - exitVelocity * toppleDuration) / (toppleDuration * toppleDuration);
         float rotated = lastAngle;
         elapsed = 0f;
         while (elapsed < toppleDuration)
