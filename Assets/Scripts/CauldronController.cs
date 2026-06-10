@@ -39,6 +39,8 @@ public class CauldronController : MonoBehaviour
     [Header("Liquid Tilt (Anti-Clip)")]
     [Tooltip("The liquid surface Transform to tilt (should be a child of the cauldron).")]
     public Transform liquidSurface;
+    public Transform spoutTransform;
+    public Transform splashPlane;
 
     [Tooltip("Maximum tilt angle in degrees before clipping the cauldron walls.")]
     public float maxTiltAngle = 4f;
@@ -192,13 +194,18 @@ public class CauldronController : MonoBehaviour
     /// Begin pouring liquid into the cauldron from a world-space position.
     /// Activates the VFX Graph pour stream.
     /// </summary>
-    public void StartPour(Vector3 pourWorldPosition)
+    public void StartPour()
     {
         if (pourVFX == null) return;
 
+        if (spoutTransform == null) return;
+        pourVFX.SetVector3("PourPosition", spoutTransform.position);
+
+        if (splashPlane == null) return;
+        pourVFX.SetVector3("SplashPlanePosition", splashPlane.position);
         _pouring = true;
-        pourVFX.SetVector3("PourPosition", pourWorldPosition);
         pourVFX.SendEvent("OnPourStart");
+        StartCoroutine(PourStreamCoroutine());
     }
 
     /// <summary>
@@ -206,11 +213,15 @@ public class CauldronController : MonoBehaviour
     /// </summary>
     public void StopPour()
     {
+        if (pourVFX == null) return;
+
         if (!_pouring) return;
+
+        Debug.Log("Stop Pouring");
         _pouring = false;
 
-        pourVFX?.SendEvent("OnPourStop");
-
+        pourVFX.SendEvent("OnPourStop");
+        pourVFX.Reinit();
         // Trigger ripple on the liquid shader
         if (_rippleFadeRoutine != null)
             StopCoroutine(_rippleFadeRoutine);
@@ -278,7 +289,7 @@ public class CauldronController : MonoBehaviour
             float t = elapsed / swirlDuration;
 
             SetHeat(Mathf.Lerp(_currentHeat, 1f, t)); // Gradually increase heat to boiling
-            liquidMaterial?.SetFloat(SwirlSpeedID, baseSwirlSpeed + _currentHeat 
+            liquidMaterial?.SetFloat(SwirlSpeedID, baseSwirlSpeed + _currentHeat
                 * maxSwirlBoost + swirlMagnitude * Mathf.Sin(t * Mathf.PI * 4));
             yield return null;
         }
@@ -286,6 +297,28 @@ public class CauldronController : MonoBehaviour
         // Restore normal speed
         liquidMaterial?.SetFloat(SwirlSpeedID, baseSwirlSpeed + _currentHeat * maxSwirlBoost);
         SetHeat(0f); // Cool down after stirring
+    }
+
+    IEnumerator PourStreamCoroutine()
+    {
+        if (pourVFX == null) yield break;
+        Debug.Log($"Pour Routine Start");
+
+        float elapsed = 0f;
+        float pourDuration = 3f; // Max duration for the pour stream (can be interrupted by StopPour)
+
+        pourVFX.pause = false;
+
+        // Keep the pour stream active until StopPour is called
+        while (elapsed < pourDuration)
+        {
+            elapsed += Time.deltaTime;
+            pourVFX.SendEvent("UpdatePour"); // Custom event to update pour position if needed
+            yield return null;
+        }
+
+        pourVFX.pause = true;
+        StopPour();
     }
 
     // ─── Editor Helpers ───────────────────────────────────────────────────────
