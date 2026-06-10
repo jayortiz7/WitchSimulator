@@ -84,16 +84,22 @@ public class Reactions : MonoBehaviour
         }
     }
 
-    // for testing
+    // for demoing and testing only
     void Update(){
-        if (Input.GetKeyDown(KeyCode.P))
-            StartCoroutine(TurnToStone());
         if (Input.GetKeyDown(KeyCode.S))
+            StartCoroutine(TurnToStone());
+        if (Input.GetKeyDown(KeyCode.P))
+            StartCoroutine(TurnPurple());
+        if (Input.GetKeyDown(KeyCode.Z))
             sleepParticles.Play();
         if (Input.GetKeyDown(KeyCode.L))
             loveParticles.Play();
         if (Input.GetKeyDown(KeyCode.V))
             animator.SetTrigger("Levitate");
+        if (Input.GetKeyDown(KeyCode.H))
+            StartCoroutine(ShrinkDown());
+        if (Input.GetKeyDown(KeyCode.F))
+            animator.SetTrigger("Flex");
         if (Input.GetKeyDown(KeyCode.G))
         {
             animator.SetTrigger("Spin");
