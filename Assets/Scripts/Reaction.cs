@@ -39,7 +39,7 @@ public class Reactions : MonoBehaviour
     public Material goblinMaterial;
     public Material defaultPotionMaterial;   // the starting liquid material
     public Material turnToStone;
-    
+
     // The Renderer on the 3D liquid mesh inside the cauldron
     public Renderer potionLiquidRenderer;
 
@@ -120,8 +120,8 @@ public class Reactions : MonoBehaviour
     public void OnIngredientClicked(string ingredient) {
 
         // if animation happened, immediately return
-        if (reactionComplete){ 
-            
+        if (reactionComplete){
+
             return;
         }
 
@@ -131,6 +131,7 @@ public class Reactions : MonoBehaviour
             return;
         }
         //boilButton.gameObject.SetActive(true);
+        cauldron.GetComponent<CauldronController>().StartPour();
 
         if (ingredients.Contains(ingredient)) {
             if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
@@ -168,19 +169,19 @@ public class Reactions : MonoBehaviour
 
             return explosionMaterial;  // explosion
         if (ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice"))
-    
+
             return animalMaterial;  // turn into animal
         if (ingredients.Contains("Dragon's Blood") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice"))
-     
+
             return stoneMaterial;    // turn into stone
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Black Magic Bean Juice"))
 
             return levitationMaterial;   // levitation
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Bat Drool") && ingredients.Contains("Unicorn Tears"))
-     
+
             return strengthMaterial;    // strength
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Dragon's Blood") && ingredients.Contains("Unicorn Tears"))
-      
+
             return purpleMaterial;   // turn purple
         if (ingredients.Contains("Goblin Sweat") && ingredients.Contains("Unicorn Tears") && ingredients.Contains("Black Magic Bean Juice"))
             return goblinMaterial;  // turn into goblin
