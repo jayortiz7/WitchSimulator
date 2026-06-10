@@ -193,6 +193,7 @@ public class Reactions : MonoBehaviour
         Debug.Log("Clicked stir");
         animator.SetTrigger("Stir");
         Material mat = GetPotionMaterial();
+        cauldron.GetComponent<CauldronController>().StartMixing();
         if (mat != null) {
             potionLiquidRenderer.material = mat;
         }
