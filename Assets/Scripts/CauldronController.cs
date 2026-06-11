@@ -42,6 +42,9 @@ public class CauldronController : MonoBehaviour
     public Transform spoutTransform;
     public Transform splashPlane;
 
+    [Tooltip("Vertical offset applied to the pour start position (negative values start the stream lower).")]
+    public float pourHeightOffset = 0f;
+
     [Tooltip("Maximum tilt angle in degrees before clipping the cauldron walls.")]
     public float maxTiltAngle = 4f;
 
@@ -199,7 +202,7 @@ public class CauldronController : MonoBehaviour
         if (pourVFX == null) return;
 
         if (spoutTransform == null) return;
-        pourVFX.SetVector3("PourPosition", spoutTransform.position);
+        pourVFX.SetVector3("PourPosition", spoutTransform.position + Vector3.up * pourHeightOffset);
 
         if (splashPlane == null) return;
         pourVFX.SetVector3("SplashPlanePosition", splashPlane.position);
@@ -305,7 +308,7 @@ public class CauldronController : MonoBehaviour
         Debug.Log($"Pour Routine Start");
 
         float elapsed = 0f;
-        float pourDuration = 3f; // Max duration for the pour stream (can be interrupted by StopPour)
+        float pourDuration = 2f; // Max duration for the pour stream (can be interrupted by StopPour)
 
         pourVFX.pause = false;
 

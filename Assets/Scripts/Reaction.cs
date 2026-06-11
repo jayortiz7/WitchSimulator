@@ -53,6 +53,14 @@ public class Reactions : MonoBehaviour
     public GameObject witchCharacter;
     public GameObject animalCharacter;
 
+    // Potion bottle held in the witch's hand while pouring
+    [Header("Potion Bottle")]
+    public GameObject potionBottlePrefab;
+    public Vector3 bottleHandOffset;
+    public Vector3 bottleHandRotation;
+    public Vector3 bottleScale = Vector3.one;
+    private GameObject activeBottle;
+
 
 
 
@@ -151,6 +159,64 @@ public class Reactions : MonoBehaviour
         }
     }
 
+    private string GetIngredientColor(string ingredient)
+    {
+        switch (ingredient)
+        {
+            case "Dragon's Blood": return "#650404";
+            case "Unicorn Tears": return "#ADD8E6";
+            case "Black Magic Bean Juice": return "#1A1A1A";
+            case "Goblin Sweat": return "#9ACD32";
+            case "Bat Drool": return "#785b3e";
+            default: return "#FFFFFF";
+        }
+    }
+
+    // Spawns a potion bottle in the witch's hand, tinted to the ingredient's color,
+    // and removes it once the pour finishes.
+    private void SpawnPotionBottle(string ingredient)
+    {
+        if (potionBottlePrefab == null || animator == null) return;
+
+        Transform hand = animator.GetBoneTransform(HumanBodyBones.RightHand);
+        if (hand == null) return;
+
+        if (activeBottle != null) Destroy(activeBottle);
+
+        activeBottle = Instantiate(potionBottlePrefab, hand);
+        activeBottle.transform.localPosition = bottleHandOffset;
+        activeBottle.transform.localEulerAngles = bottleHandRotation;
+        activeBottle.transform.localScale = bottleScale;
+
+        // Prevent physics from pulling the bottle out of the witch's hand
+        foreach (var rb in activeBottle.GetComponentsInChildren<Rigidbody>())
+            Destroy(rb);
+        foreach (var col in activeBottle.GetComponentsInChildren<Collider>())
+            Destroy(col);
+
+        Color bottleColor;
+        if (ColorUtility.TryParseHtmlString(GetIngredientColor(ingredient), out bottleColor))
+        {
+            var propertyBlock = new MaterialPropertyBlock();
+            foreach (var renderer in activeBottle.GetComponentsInChildren<Renderer>())
+            {
+                renderer.GetPropertyBlock(propertyBlock);
+                propertyBlock.SetColor("_BaseColor", bottleColor);
+                propertyBlock.SetColor("_Color", bottleColor);
+                renderer.SetPropertyBlock(propertyBlock);
+            }
+        }
+
+        StartCoroutine(RemoveBottleAfterPour(activeBottle, 3f));
+    }
+
+    private IEnumerator RemoveBottleAfterPour(GameObject bottle, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (bottle == activeBottle) activeBottle = null;
+        if (bottle != null) Destroy(bottle);
+    }
+
     public void OnIngredientClicked(string ingredient) {
 
         // if animation happened, immediately return
@@ -166,6 +232,7 @@ public class Reactions : MonoBehaviour
         }
         //boilButton.gameObject.SetActive(true);
         cauldron.GetComponent<CauldronController>().StartPour();
+        SpawnPotionBottle(ingredient);
 
         if (ingredients.Contains(ingredient)) {
             if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
