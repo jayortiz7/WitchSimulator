@@ -217,6 +217,12 @@ public class Reactions : MonoBehaviour
         if (bottle != null) Destroy(bottle);
     }
 
+    private IEnumerator StartPourAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        cauldron.GetComponent<CauldronController>().StartPour();
+    }
+
     public void OnIngredientClicked(string ingredient) {
 
         // if animation happened, immediately return
@@ -230,15 +236,15 @@ public class Reactions : MonoBehaviour
             feedbackText.text = "Cauldron full, click stir";
             return;
         }
-        //boilButton.gameObject.SetActive(true);
-        cauldron.GetComponent<CauldronController>().StartPour();
-        SpawnPotionBottle(ingredient);
-
         if (ingredients.Contains(ingredient)) {
             if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
             feedbackCoroutine = StartCoroutine(ShowTempFeedback("Add a different ingredient!", 3f));
             return;
         }
+
+        //boilButton.gameObject.SetActive(true);
+        StartCoroutine(StartPourAfterDelay(0.5f));
+        SpawnPotionBottle(ingredient);
 
         animator.SetTrigger("AddIngredient");
 
